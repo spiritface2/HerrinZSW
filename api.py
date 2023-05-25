@@ -7,7 +7,6 @@ import torch
 import torch.nn.functional as FF
 import torch.optim
 from torchvision import utils
-from tqdm import tqdm
 
 from .stylegan2.model import Generator
 
@@ -44,14 +43,12 @@ class CustomGenerator(Generator):
         self,
         styles,
         inject_index=None,
-        truncation=1,
         truncation_latent=None,
         input_is_latent=False,
         noise=None,
         randomize_noise=True,
     ):
         if not input_is_latent:
-            styles = [self.style(s) for s in styles]
 
         if noise is None:
             if randomize_noise:
